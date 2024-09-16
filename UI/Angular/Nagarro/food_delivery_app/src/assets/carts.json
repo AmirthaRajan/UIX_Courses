@@ -1,0 +1,18 @@
+[{
+    "cart_id" : "rajan",
+    "restaurant_id" : "1",
+    "items" : {
+        "burger" : 1,
+        "sandwitch" : 2
+    },
+    "total" : 50
+},
+{
+    "cart_id" : "abi",
+    "restaurant_id" : "4",
+    "items" : {
+        "veg meals" : 1,
+        "veg soup" : 1
+    },
+    "total" : 35
+}]

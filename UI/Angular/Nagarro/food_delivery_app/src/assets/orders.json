@@ -1,0 +1,24 @@
+$siteUid = pk
+$storeUid = pk
+$sessionCurr = PKR
+$defaultLang = en_PK
+
+INSERT_UPDATE Employee  ; uid                          ; uidHash[unique=true][cellDecorator = com.samsung.toko.dataimport.decorators.UidHashCellDecorator]; groups(uidHash)[cellDecorator = com.samsung.toko.dataimport.decorators.UidHashGroupCellDecorator][mode = append]; sessionCurrency(isocode)[default = $sessionCurr]; sessionLanguage(isocode)[default = $sessionLang]
+                        ; $siteUid-cronjobuser         ; $siteUid-cronjobuser                                                                             ; administrator                                                                                              ;                                                 ;                                                   ;      ;
+
+#### clean temporary order
+INSERT_UPDATE TokoStoreCronJob; code[unique = true]; job(code); singleExecutable; store(uid); sessionLanguage(isocode); sessionUser(uid)
+                        ; $siteUid-tokoCleanUpTemporaryOrdersJobPerformable ; cleanUpTemporaryOrdersJobPerformable ; false ; $storeUid ; en ; $siteUid-cronjobuser
+
+# timed to run every 60 mins
+INSERT_UPDATE Trigger; cronjob(code)[unique = true]                      ; cronExpression
+                     ; $siteUid-tokoCleanUpTemporaryOrdersJobPerformable ; 0 0 0/1 * * ? *
+
+
+#### Cart Cleanup CronJobs
+INSERT_UPDATE CartRemovalCronJob; code[unique = true]; job(code)[default = tokoCartRemovalJob]; sites(uid)[default = $siteUid]; sessionLanguage(isoCode)[default = en]; store(uid)[default = $storeUid]; sessionUser(uid)[default = $siteUid-cronjobuser]
+                                ; $siteUid-TokoCartRemovalJob ; ; ; ; ;
+
+# Once a day
+INSERT_UPDATE Trigger; cronjob(code)[unique = true]; cronExpression
+                     ; $siteUid-TokoCartRemovalJob ; 0 0 0 1/1 * ? *

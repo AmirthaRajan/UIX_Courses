@@ -1,0 +1,8 @@
+
+<div *ngFor="let restaurant of restaurants" class="restaurant-card">
+    <img [src]="restaurant.image" alt="{{restaurant.name}}">
+    <h3>{{restaurant.name}}</h3>
+    <p>Rating: {{restaurant.rating}}</p>
+    <p>Delivery Time: {{restaurant.deliveryTime}}</p>
+    <!-- <a [routerLink]="['/restaurant', restaurant.id]">View Details</a> -->
+  </div>
