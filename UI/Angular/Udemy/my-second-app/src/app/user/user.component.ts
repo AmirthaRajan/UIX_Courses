@@ -1,4 +1,4 @@
-import {Component, computed, input, Input} from '@angular/core';
+import {Component, computed, input, Input, output} from '@angular/core';
 import {CommonModule} from "@angular/common";
 
 @Component({
@@ -10,10 +10,16 @@ import {CommonModule} from "@angular/common";
 })
 export class UserComponent {
   avatar  = input.required<string>();
+  @Input({ required : true }) id!: string;
   @Input({ required : true }) name!: string;
+  //@Output() selectedUser = new EventEmitter<string>();
+  selectedUser = output<string>();
 
   imagePath = computed(()=> {
     return "assets/users/" + this.avatar();
   });
 
+  onSelectUser() {
+    this.selectedUser.emit(this.id);
+  }
 }
