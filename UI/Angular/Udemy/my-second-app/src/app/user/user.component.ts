@@ -1,5 +1,17 @@
-import {Component, computed, input, Input, output} from '@angular/core';
+import {Component, Input, output} from '@angular/core';
 import {CommonModule} from "@angular/common";
+
+// type User = {
+//   id : string;
+//   avatar : string;
+//   name : string;
+// };
+
+interface User {
+  id : string;
+  avatar : string;
+  name : string;
+}
 
 @Component({
   selector: 'app-user',
@@ -8,18 +20,16 @@ import {CommonModule} from "@angular/common";
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })
+
 export class UserComponent {
-  avatar  = input.required<string>();
-  @Input({ required : true }) id!: string;
-  @Input({ required : true }) name!: string;
-  //@Output() selectedUser = new EventEmitter<string>();
+  @Input({required : true}) user! : User;
   selectedUser = output<string>();
 
-  imagePath = computed(()=> {
-    return "assets/users/" + this.avatar();
-  });
+  get imagePath() {
+    return "assets/users/" + this.user.avatar;
+  };
 
   onSelectUser() {
-    this.selectedUser.emit(this.id);
+    this.selectedUser.emit(this.user.id);
   }
 }
