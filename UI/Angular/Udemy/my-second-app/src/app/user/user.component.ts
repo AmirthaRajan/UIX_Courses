@@ -1,17 +1,6 @@
 import {Component, Input, output} from '@angular/core';
 import {CommonModule} from "@angular/common";
-
-// type User = {
-//   id : string;
-//   avatar : string;
-//   name : string;
-// };
-
-interface User {
-  id : string;
-  avatar : string;
-  name : string;
-}
+import {type User} from "./user.model";
 
 @Component({
   selector: 'app-user',
@@ -23,6 +12,8 @@ interface User {
 
 export class UserComponent {
   @Input({required : true}) user! : User;
+  @Input({required : true}) selected! : boolean;
+
   selectedUser = output<string>();
 
   get imagePath() {

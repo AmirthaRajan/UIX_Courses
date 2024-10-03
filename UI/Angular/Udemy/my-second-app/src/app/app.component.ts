@@ -3,6 +3,7 @@ import {HeaderComponent} from "./header/header.component";
 import {UserComponent} from "./user/user.component";
 import { DUMMY_USERS} from "./dummy-users";
 import {TasksComponent} from "./tasks/tasks.component";
+import {User} from "./user/user.model";
 
 @Component({
   selector: 'app-root',
@@ -13,13 +14,9 @@ import {TasksComponent} from "./tasks/tasks.component";
 })
 export class AppComponent {
   users =  DUMMY_USERS;
-  user? : {
-    id : string;
-    name : string;
-    avatar : string;
-  };
+  selectedUser? : User;
 
-  selectedUser(id: string) {
-    this.user = this.users.find((user) => user.id === id)
+  selectUser(id: string) {
+    this.selectedUser = this.users.find((user) => user.id === id)
   }
 }
