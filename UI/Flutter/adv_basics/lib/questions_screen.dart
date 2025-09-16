@@ -1,7 +1,7 @@
 import 'package:adv_basics/answers.dart';
-import 'package:adv_basics/models/quiz_question.dart';
 import 'package:flutter/material.dart';
 import 'package:adv_basics/data/questions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
   
@@ -35,11 +35,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
               Text(currentQuestion.question, 
-              style: TextStyle(color: Colors.white),
-              textAlign: TextAlign.center,),
+              style: GoogleFonts.lato(color: Colors.white, fontSize: 24),
+              textAlign: TextAlign.center,
+              ),
               SizedBox(height: 30,),
               ...currentQuestion.getShuffledAnswers().map((answer) => 
-                 Answers(answerText: answer, onTap: answerQuestion))
+              Answers(answerText: answer, onTap: answerQuestion,))
             ]),
       ),
     );

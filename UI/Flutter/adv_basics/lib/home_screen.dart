@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -16,10 +17,10 @@ class HomeScreen extends StatelessWidget {
                   width: 300,
                   color: const Color.fromARGB(126, 255, 255, 255),
                 ),
-                const SizedBox(height: 80),
+                SizedBox(height: 80),
                 Text(
                   "Learn Flutter the fun way!",
-                  style: TextStyle(fontSize: 24, color: Colors.white),
+                  style: GoogleFonts.lato(fontSize: 24, color: Colors.white),
                 ),
                 const SizedBox(height:30),
                 OutlinedButton.icon(

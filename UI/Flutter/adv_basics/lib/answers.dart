@@ -17,6 +17,7 @@ class Answers extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10)
       ),
       onPressed: onTap, 
-      child: Text(answerText));
+      child: Text(answerText, textAlign: TextAlign.center,)
+      );
   }
 }
