@@ -20,9 +20,16 @@ class _QuizState extends State<Quiz> {
   Widget? activeScreen;
 
   @override
-  initState() {
+  void initState() {
+    super.initState();
     activeScreen = HomeScreen(switchScreen);
-    super.initState();  
+  }
+
+  void onRestartQuiz() {
+    setState(() {
+      selectedAnswers = [];
+      activeScreen = HomeScreen(switchScreen);
+    });
   }
 
   void selectedAnswer(String answer) {
@@ -30,10 +37,11 @@ class _QuizState extends State<Quiz> {
 
     if(questions.length == selectedAnswers.length) {
       setState((){
-        activeScreen = ResultsScreen(choosenAnswers: selectedAnswers);
+        activeScreen = ResultsScreen(choosenAnswers: selectedAnswers, onRestartQuiz: onRestartQuiz);
       });
-    }
+   }
   }
+  
 
 
   void switchScreen() {
